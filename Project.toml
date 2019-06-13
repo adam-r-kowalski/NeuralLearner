@@ -1,0 +1,11 @@
+name = "NeuralLearner"
+uuid = "9ff0c7b6-8adf-11e9-030b-fdaa3070214c"
+authors = ["Adam Kowalski <adam.kowalski.work@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+Flux = "587475ba-b771-5e3f-ad9e-33799f191a9c"
+PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
