@@ -77,7 +77,8 @@ end
     observation = reset(env)
     action = select_action(agent, observation)
     next_observation, reward, done = step(env, action)
-    remember!(agent, Transition(observation, action, reward, next_observation))
+    transition = Transition(observation, action, reward, next_observation, done)
+    remember!(agent, transition)
     @test length(agent.transitions) == 1
 end
 

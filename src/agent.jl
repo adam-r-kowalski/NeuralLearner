@@ -3,6 +3,7 @@ struct Transition{Observation, Action}
     action::Action
     reward::Float32
     next_observation::Observation
+    done::Bool
 end
 
 

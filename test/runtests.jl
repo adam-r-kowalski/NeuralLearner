@@ -8,6 +8,7 @@ using Flux: OneHotVector
 
 include("test_environment.jl")
 include("test_agent.jl")
+include("test_simulation.jl")
 
 end
 
