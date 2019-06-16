@@ -52,4 +52,16 @@ end
 end
 
 
+@testset "agent will not improve if there are not enough transitions" begin
+    env = Environment("Ant-v2")
+    agent = Agent(env)
+    sim = Simulation(env, agent)
+    for _ ∈ 1:agent.batch_size - 1
+        iterate(sim)
+        @test isnothing(NeuralLearner.improve!(agent))
+    end
+    iterate(sim)
+    NeuralLearner.improve!(agent)
+end
+
 end

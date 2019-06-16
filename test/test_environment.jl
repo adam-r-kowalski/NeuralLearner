@@ -1,11 +1,13 @@
 @testset "environment tests" begin
 
+
 @testset "create box using low and high" begin
     box = Box([-1., -2], [1., 2])
     @test low(box) == [-1., -2]
     @test high(box) == [1., 2]
     @test size(box) == (2,)
 end
+
 
 @testset "create box using low, high and shape" begin
     box = Box(-1., 1., (3, 2))
@@ -18,6 +20,7 @@ end
     @test size(box) == (3, 2)
 end
 
+
 @testset "create box from python using low, high and shape" begin
     python_box = NeuralLearner.gym.spaces.Box(low=[-1, -2], high=[1, 2])
     box = Box(python_box)
@@ -25,6 +28,7 @@ end
     @test high(box) == [1., 2]
     @test size(box) == (2,)
 end
+
 
 @testset "create box from python using low, high and shape" begin
     python_box = NeuralLearner.gym.spaces.Box(low=-1, high=1, shape=(3, 2))
@@ -38,10 +42,12 @@ end
     @test size(box) == (3, 2)
 end
 
+
 @testset "create discrete" begin
     discrete = Discrete(5)
     @test n(discrete) == 5
 end
+
 
 @testset "create discrete from python" begin
     python_discrete = NeuralLearner.gym.spaces.Discrete(5)
@@ -49,17 +55,20 @@ end
     @test n(discrete) == 5
 end
 
+
 @testset "abstract space from python box" begin
     python_box = NeuralLearner.gym.spaces.Box(low=-1, high=1, shape=(3, 2))
     box = NeuralLearner.AbstractSpace(python_box)
     @test box isa Box{Float32, 2}
 end
 
+
 @testset "abstract space from python discrete" begin
     python_discrete = NeuralLearner.gym.spaces.Discrete(5)
     discrete = NeuralLearner.AbstractSpace(python_discrete)
     @test discrete isa Discrete{Int64}
 end
+
 
 @testset "cartpole environment" begin
     env = Environment("CartPole-v0")
@@ -74,6 +83,7 @@ end
     close(env)
 end
 
+
 @testset "frozen lake environment" begin
     env = Environment("FrozenLake-v0")
     @test observation_space(env) isa Discrete{Int}
@@ -87,6 +97,7 @@ end
     close(env)
 end
 
+
 @testset "ant environment" begin
     env = Environment("Ant-v2")
     @test observation_space(env) isa Box{Float32, 1}
@@ -99,5 +110,6 @@ end
     @test done isa Bool
     close(env)
 end
+
 
 end

@@ -5,7 +5,8 @@ export Box, low, high, Discrete, n, Environment,
        remember!, Transition, Simulation
 
 using PyCall, Flux, Distributions, DataStructures
-using Flux: onehot, data
+using Flux: onehot, mse, data, params, @treelike
+using Flux.Tracker: gradient, update!
 
 include("environment.jl")
 include("agent.jl")

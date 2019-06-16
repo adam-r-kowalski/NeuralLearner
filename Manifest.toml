@@ -113,9 +113,7 @@ uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[Distributions]]
 deps = ["LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns"]
-git-tree-sha1 = "8519ef5e24a827759029a15d0cd50a696bdb10e2"
-repo-rev = "master"
-repo-url = "https://github.com/JuliaStats/Distributions.jl.git"
+git-tree-sha1 = "4ae0ff1a3a556383f7b1b004f5fb964b26ac96c9"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
 version = "0.20.0"
 
