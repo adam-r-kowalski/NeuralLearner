@@ -104,8 +104,8 @@ function probability_distribution(agent::Agent{Observation, <:AbstractVector},
     actions = size(agent.action_space)[1]
     logits = reshape(agent.π(encoded), 2, actions, :)
     map(1:agent.batch_size) do i
-        μ, Σ = logits[1, :, i], exp.(logits[2, :, i])
-        MvNormal(μ, Σ)
+        μ, σ = logits[1, :, i], exp.(logits[2, :, i])
+        MvNormal(μ, σ)
     end
 end
 
@@ -113,19 +113,9 @@ end
 function probability_distribution(agent::Agent{Observation, <:AbstractVector},
                                   observation::Observation) where Observation
     logits = reshape(agent.π(agent.encoder(observation)), 2, :)
-    μ, Σ = logits[1, :], exp.(logits[2, :])
-    MvNormal(μ, Σ)
+    μ, σ = logits[1, :], exp.(logits[2, :])
+    MvNormal(μ, σ)
 end
-
-
-Distributions.MvNormal(μ::AbstractVector{<:Real}, σ::AbstractVector{<:Real}) =
-    MvNormal(μ, PDiagMat(abs2.(σ)))
-
-
-PDiagMat(v::AbstractVector) = Distributions.PDiagMat(v, inv.(v))
-
-
-Base.eltype(::MvNormal{T}) where T = T
 
 
 function select_action(agent::Agent{Observation, <:AbstractVector{T}},
@@ -197,7 +187,7 @@ function improve!(agent::Agent)
     log_probabilities = map(normals, batch.actions) do normal, action
         loglikelihood(normal, reshape(action, :, 1))
     end
-    returns = discount(batch, agent.γ)
+    returns = normalize(discount(batch, agent.γ))
     π_loss = mean(-log_probabilities .* returns)
     θ = params(agent)
     Δ = gradient(θ) do
