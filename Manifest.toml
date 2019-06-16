@@ -113,7 +113,9 @@ uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[Distributions]]
 deps = ["LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns"]
-path = "dev/Distributions"
+git-tree-sha1 = "67bd396cdb67cdc72ec47053223e6412e136c5ff"
+repo-rev = "ak/abstract_types"
+repo-url = "https://github.com/adam-r-kowalski/Distributions.jl.git"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
 version = "0.20.0"
 
@@ -208,7 +210,9 @@ version = "1.1.0"
 
 [[PDMats]]
 deps = ["Arpack", "LinearAlgebra", "SparseArrays", "SuiteSparse", "Test"]
-path = "dev/PDMats"
+git-tree-sha1 = "7d20e35ef14073f4f8047eca2fb4f5db80555cd6"
+repo-rev = "ak/abstract_types"
+repo-url = "https://github.com/adam-r-kowalski/PDMats.jl.git"
 uuid = "90014a1f-27ba-587c-ab20-58faa44d9150"
 version = "0.9.7"
 
