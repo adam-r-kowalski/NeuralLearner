@@ -1,10 +1,8 @@
 struct Simulation{
         ObservationSpace <: AbstractSpace,
         ActionSpace <: AbstractSpace,
-        Observation,
-        Action,
         Environment <: AbstractEnvironment{ObservationSpace, ActionSpace},
-        Agent <: AbstractAgent{Observation, Action, ObservationSpace, ActionSpace},
+        Agent <: AbstractAgent{ObservationSpace, ActionSpace},
         }
     env::Environment
     agent::Agent

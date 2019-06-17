@@ -7,23 +7,23 @@ struct Transition{Observation, Action}
 end
 
 
-abstract type AbstractAgent{Observation,
-                            Action,
-                            ObservationSpace<:AbstractSpace,
-                            ActionSpace<:AbstractSpace
-                            }
+abstract type AbstractAgent{
+    ObservationSpace<:AbstractSpace,
+    ActionSpace<:AbstractSpace
+    }
 end
 
 
-struct Agent{Observation,
-             Action,
-             ObservationSpace<:AbstractSpace,
-             ActionSpace<:AbstractSpace,
-             Encoder,
-             Decoder,
-             Policy,
-             Optimizer
-             } <: AbstractAgent{Observation, Action, ObservationSpace, ActionSpace}
+struct Agent{
+        Observation,
+        Action,
+        ObservationSpace<:AbstractSpace,
+        ActionSpace<:AbstractSpace,
+        Encoder,
+        Decoder,
+        Policy,
+        Optimizer
+        } <: AbstractAgent{ObservationSpace, ActionSpace}
     observation_space::ObservationSpace
     action_space::ActionSpace
     encoder::Encoder
@@ -69,7 +69,7 @@ function policy(::CustomizationToken, box::Box{<:AbstractFloat, 1})
 end
 
 
-optimizer(::CustomizationToken) = ADAM()
+optimizer(::CustomizationToken) = ADAM(1e-5)
 
 
 transitions(::CustomizationToken, ::Box{T1, N1}, ::Box{T2, N2}
@@ -201,4 +201,5 @@ function remember!(agent::Agent{Observation, Action},
           transition::Transition{Observation, Action}
           ) where {Observation, Action}
     push!(agent.transitions, transition)
+    improve!(agent)
 end

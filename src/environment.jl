@@ -50,15 +50,17 @@ function AbstractSpace(p::PyObject)
 end
 
 
-abstract type AbstractEnvironment{ObservationSpace<:AbstractSpace,
-                                  ActionSpace<:AbstractSpace
-                                  }
+abstract type AbstractEnvironment{
+    ObservationSpace<:AbstractSpace,
+    ActionSpace<:AbstractSpace
+    }
 end
 
 
-struct Environment{ObservationSpace<:AbstractSpace,
-                   ActionSpace<:AbstractSpace
-                   } <: AbstractEnvironment{ObservationSpace, ActionSpace}
+struct Environment{
+        ObservationSpace<:AbstractSpace,
+        ActionSpace<:AbstractSpace
+        } <: AbstractEnvironment{ObservationSpace, ActionSpace}
     p::PyObject
     observation_space::ObservationSpace
     action_space::ActionSpace
